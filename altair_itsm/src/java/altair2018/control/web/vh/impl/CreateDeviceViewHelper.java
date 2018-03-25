@@ -181,27 +181,6 @@ public class CreateDeviceViewHelper implements IViewHelper{
             //mostre o objeto da entidade na tela enviando por session
             
         }
-        //se for null e operacao consultar
-        if(result.getMsg() == null && operation.equals("CONSULTAR"))
-        {
-            //envia entidade por session
-            request.getSession().setAttribute("result", result);
-            dispatcher = request.getRequestDispatcher("productList.jsp");
-        }
-        //se for null e opcao visualizar 
-        if(result.getMsg() == null && operation.equals("VISUALIZAR"))
-        {
-            //envia entidade por session
-            request.getSession().setAttribute("result", result);
-            dispatcher = request.getRequestDispatcher("productView.jsp");
-        }
-        
-        if(result.getMsg() == null && operation.equals("ALTERAR"))
-        {
-            //envia entidade por session
-            request.getSession().setAttribute("result", result);
-            dispatcher = request.getRequestDispatcher("productList.jsp");
-        }
         
         //manda pagina
         dispatcher.forward(request, response);

@@ -57,7 +57,6 @@ public class ListDeviceViewHelper implements IViewHelper {
         //se mensagem de resultado for null temos entidade
         if(result.getMsg() == null)
         {
-            
             //envia entidade por session
             request.getSession().setAttribute("result", result);
             dispatcher = request.getRequestDispatcher("productList.jsp");
