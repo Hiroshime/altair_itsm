@@ -19,7 +19,11 @@ public class Device extends DomainEntity{
     private Manufactor manufactor = new Manufactor();
     private OperationalSystem os = new OperationalSystem();
     private Owner owner = new Owner();
-    private int status = 0;
+    private Status status = new Status();
+    private String note = "";
+    private SupportTeam supteam = new SupportTeam();
+    private HostStatus hoststats = new HostStatus();
+    
 
     /**
      * @return the type
@@ -119,19 +123,7 @@ public class Device extends DomainEntity{
         this.owner = owner;
     }
 
-    /**
-     * @return the status
-     */
-    public int getStatus() {
-        return status;
-    }
 
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     /**
      * @return the hostname
@@ -146,7 +138,8 @@ public class Device extends DomainEntity{
     public void setHostname(String hostname) {
         this.hostname = hostname;
     }
-    
+
+   
     
     
     

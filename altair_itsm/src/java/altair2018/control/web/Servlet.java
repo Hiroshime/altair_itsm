@@ -77,7 +77,7 @@ public class Servlet extends HttpServlet {
         
         
         
-        views.put("/altair-web/altair_page_bootstrap/pages/Login", new LoginViewHelper());
+        views.put("/altair_itsm/altair_page_bootstrap/pages/Login", new LoginViewHelper());
     }
 
 	
