@@ -168,65 +168,77 @@ public class DeviceDAO extends AbstractJdbcDAO {
        PreparedStatement pst =null;
         String sql = null;
         Device device = (Device)entity;
+        List<DomainEntity> devices = new ArrayList<>();
+        openConnection();
+        ResultSet reset = null;
         
-       // if(product.getName() == null || product.getName().equals("") )
-            sql = "SELECT dev.id,"
-                    + "dev.hostname,"
-                    + "dev.dt_reg,"
-                    + "dev.serial,"
-                    + "dev.ip_address,"
-                    + "dev.note, "
-                    + "own.name, "
-                    + "man.name, "
-                    + "st.name, "
-                    + "sup.name,"
-                    + "typ.name, "
-                    + "hos.name "
-                    + "FROM (tb_device as dev) "
-                    + "INNER JOIN (tb_owner as own) ON (dev.owner_id = own.id) "
-                    + "INNER JOIN (tb_manufactor as man) ON (dev.manufactor_id = man.id) "
-                    + "INNER JOIN (tb_status as st) ON (dev.status_id = st.id) "
-                    + "INNER JOIN (tb_supteam as sup) ON (dev.supteam_id = sup.id) "
-                    + "INNER JOIN (tb_type as typ) ON (dev.type_id = typ.id) "
-                    + "INNER JOIN (tb_hoststats as hos) ON (dev.hoststats_id = hos.id)";
-        
-      /*  
-        else
-            sql = "SELECT prd.id,"
-                    + "prd.name,"
-                    + "prd.dt_reg,"
-                    + "prd.description,"
-                    + "bra.id,"
-                    + "bra.name, "
-                    + "cat.id, "
-                    + "cat.name, "
-                    + "prd.price, "
-                    + "prd.quantity, "
-                    + "prd.nutritionTable "
-                    + "FROM (tb_product as prd) "
-                    + "INNER JOIN (tb_brand as bra) ON (prd.id_brand = bra.id) "
-                    + "INNER JOIN (tb_category as cat) ON (prd.id_category = cat.id)"
-                    + "WHERE prd.name=?";
-        */
-                    
         try
         {
-            openConnection();
-            pst = connection.prepareStatement(sql);
- 
-            ResultSet reset = pst.executeQuery();
-            List<DomainEntity> devices = new ArrayList<>();
-            while(reset.next())
+            if(device.getOwner() == null || device.getOwner().getName().equals(""))
             {
+                sql = "SELECT dev.id,"
+                        + "dev.hostname,"
+                        + "dev.dt_reg,"
+                        + "dev.serial,"
+                        + "dev.ip_address,"
+                        + "dev.note, "
+                        + "own.name, "
+                        + "man.name, "
+                        + "st.name, "
+                        + "sup.name,"
+                        + "typ.name, "
+                        + "hos.name "
+                        + "FROM (tb_device as dev) "
+                        + "INNER JOIN (tb_owner as own) ON (dev.owner_id = own.id) "
+                        + "INNER JOIN (tb_manufactor as man) ON (dev.manufactor_id = man.id) "
+                        + "INNER JOIN (tb_status as st) ON (dev.status_id = st.id) "
+                        + "INNER JOIN (tb_supteam as sup) ON (dev.supteam_id = sup.id) "
+                        + "INNER JOIN (tb_type as typ) ON (dev.type_id = typ.id) "
+                        + "INNER JOIN (tb_hoststats as hos) ON (dev.hoststats_id = hos.id)";
+
+                pst = connection.prepareStatement(sql);
+            }
+            else
+            {
+                sql = "SELECT dev.id,"
+                        + "dev.hostname,"
+                        + "dev.dt_reg,"
+                        + "dev.serial,"
+                        + "dev.ip_address,"
+                        + "dev.note, "
+                        + "own.name, "
+                        + "man.name, "
+                        + "st.name, "
+                        + "sup.name,"
+                        + "typ.name, "
+                        + "hos.name "
+                        + "FROM (tb_device as dev) "
+                        + "INNER JOIN (tb_owner as own) ON (dev.owner_id = own.id) "
+                        + "INNER JOIN (tb_manufactor as man) ON (dev.manufactor_id = man.id) "
+                        + "INNER JOIN (tb_status as st) ON (dev.status_id = st.id) "
+                        + "INNER JOIN (tb_supteam as sup) ON (dev.supteam_id = sup.id) "
+                        + "INNER JOIN (tb_type as typ) ON (dev.type_id = typ.id) "
+                        + "INNER JOIN (tb_hoststats as hos) ON (dev.hoststats_id = hos.id) "
+                        + "WHERE own.name = ?";
+               
+                pst = connection.prepareStatement(sql);
+                pst.setString(1, device.getOwner().getName());
+            }
+            
+            
+            reset = pst.executeQuery();
+            
+            
+            while(reset.next()) {
                 Device dev = new Device();
                 dev.setId(reset.getInt("dev.id"));
                 dev.setHostname(reset.getString("dev.hostname"));;
                 java.sql.Date dtGenerica = reset.getDate("dev.dt_reg");
                 Date dtNormal = new Date(dtGenerica.getTime());
                 dev.setSerial(reset.getString("dev.serial"));
-                dev.setIpAddress(reset.getString("dev.ipaddress"));
+                dev.setIpAddress(reset.getString("dev.ip_address"));
                 Owner owner = new Owner();
-                owner.setName(reset.getString("own.ame"));
+                owner.setName(reset.getString("own.name"));
                 Manufactor manufactor = new Manufactor();
                 manufactor.setName(reset.getString("man.name"));
                 Status status = new Status();
@@ -246,6 +258,7 @@ public class DeviceDAO extends AbstractJdbcDAO {
                 devices.add(dev);
                 
             }
+            
             return devices;
         }
         catch(SQLException e)

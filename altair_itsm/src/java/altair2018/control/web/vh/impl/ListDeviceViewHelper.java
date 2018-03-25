@@ -35,7 +35,18 @@ public class ListDeviceViewHelper implements IViewHelper {
     public DomainEntity getEntity(HttpServletRequest request)
     {
         String operation = request.getParameter("operacao");
+        
+       
         Device device  = new Device();
+        
+        
+        if (request.getParameter("cliente") != null)
+        {
+            String cliente = request.getParameter("cliente");
+            Owner owner = new Owner();
+            owner.setName(cliente);
+            device.setOwner(owner);
+        }
 
         return device;
     }
@@ -54,12 +65,13 @@ public class ListDeviceViewHelper implements IViewHelper {
         
         String operation = request.getParameter("operacao");
         
+         
         //se mensagem de resultado for null temos entidade
         if(result.getMsg() == null)
         {
             //envia entidade por session
             request.getSession().setAttribute("result", result);
-            dispatcher = request.getRequestDispatcher("productList.jsp");
+            dispatcher = request.getRequestDispatcher("baseline_general.jsp");
         }
         
         

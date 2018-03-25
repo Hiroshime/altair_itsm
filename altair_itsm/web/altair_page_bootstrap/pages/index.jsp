@@ -285,19 +285,19 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Baseline<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">CGI</a>
+                                    <a href="BaselineGeral?operacao=CONSULTAR&cliente=CGI">CGI</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">EDP</a>
+                                    <a href="BaselineGeral?operacao=CONSULTAR&cliente=EDP">EDP</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">NEOENERGIA</a>
+                                    <a href="BaselineGeral?operacao=CONSULTAR&cliente=NEOENERGIA">NEOENERGIA</a>
                                 </li>
                                 <li>
                                     <a href="BaselineGeral?operacao=CONSULTAR">Geral</a>
