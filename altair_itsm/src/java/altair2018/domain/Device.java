@@ -139,6 +139,62 @@ public class Device extends DomainEntity{
         this.hostname = hostname;
     }
 
+    /**
+     * @return the status
+     */
+    public Status getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    /**
+     * @return the supteam
+     */
+    public SupportTeam getSupteam() {
+        return supteam;
+    }
+
+    /**
+     * @param supteam the supteam to set
+     */
+    public void setSupteam(SupportTeam supteam) {
+        this.supteam = supteam;
+    }
+
+    /**
+     * @return the hoststats
+     */
+    public HostStatus getHoststats() {
+        return hoststats;
+    }
+
+    /**
+     * @param hoststats the hoststats to set
+     */
+    public void setHoststats(HostStatus hoststats) {
+        this.hoststats = hoststats;
+    }
+
    
     
     

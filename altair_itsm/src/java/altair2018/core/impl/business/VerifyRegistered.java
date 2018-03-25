@@ -6,7 +6,7 @@
 package altair2018.core.impl.business;
 
 import altair2018.core.IStrategy;
-import altair2018.core.impl.dao.ProductDAO;
+import altair2018.core.impl.dao.DeviceDAO;
 import altair2018.domain.DomainEntity;
 
 /**

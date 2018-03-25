@@ -22,6 +22,7 @@ import altair2018.control.web.command.impl.ViewCommand;
 import altair2018.control.web.vh.IViewHelper;
 import altair2018.control.web.vh.impl.LoginViewHelper;
 import altair2018.control.web.vh.impl.CreateDeviceViewHelper;
+import altair2018.control.web.vh.impl.ListDeviceViewHelper;
 import altair2018.core.application.Result;
 import altair2018.domain.DomainEntity;
 
@@ -74,7 +75,7 @@ public class Servlet extends HttpServlet {
         //Inserindo instancias de viewhelpers no map com indices de string 
         //Apenas uma view helper de aluno
         views.put("/sup-web/userPage/Product", new CreateDeviceViewHelper());
-        
+        views.put("/altair_itsm/altair_page_bootstrap/pages/BaselineGeral", new ListDeviceViewHelper());
         
         
         views.put("/altair_itsm/altair_page_bootstrap/pages/Login", new LoginViewHelper());

@@ -20,9 +20,10 @@ import altair2018.core.impl.business.CompleteRegisterDate;
 import altair2018.core.impl.business.VerifyRegistered;
 import altair2018.core.impl.dao.AddressDAO;
 import altair2018.core.impl.dao.UserDAO;
-import altair2018.core.impl.dao.ProductDAO;
+import altair2018.core.impl.dao.DeviceDAO;
 import altair2018.core.impl.dao.ReportCategoryMonthDAO;
 import altair2018.domain.Address;
+import altair2018.domain.Device;
 //import les2017.domain.CreditCard;
 //import les2017.domain.Customer;
 import altair2018.domain.DomainEntity;
@@ -58,8 +59,10 @@ public class Facade implements IFacade {
         
         
         UserDAO userDAO = new UserDAO();
+        DeviceDAO deviceDAO = new DeviceDAO();
         
         daos.put(User.class.getName(), userDAO);
+        daos.put(Device.class.getName(), deviceDAO);
 /*
        //Insere os indices com nome das classes das entidades e linka com objeto do dao
         Map<String,List<IStrategy>> brsProduct = new HashMap<>();
@@ -85,7 +88,7 @@ public class Facade implements IFacade {
         brs.put(Product.class.getName(), brsProduct);
         brs.put(OperationRequest.class.getName(), brsExchange);
         
-        ProductDAO prodDAO = new ProductDAO();
+        DeviceDAO prodDAO = new DeviceDAO();
         AddressDAO addDAO = new AddressDAO();
         CardDAO credDAO = new CardDAO();
         UserDAO cusDAO = new UserDAO();

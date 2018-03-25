@@ -10,5 +10,19 @@ package altair2018.domain;
  * @author rossatol
  */
 public class Owner extends DomainEntity {
-    String name = "";
+    private String name = "";
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 }
