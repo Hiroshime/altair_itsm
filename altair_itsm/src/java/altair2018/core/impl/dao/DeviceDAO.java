@@ -281,10 +281,10 @@ public class DeviceDAO extends AbstractJdbcDAO {
     
     public DomainEntity view(DomainEntity entity)
     {
-       /* 
+        
         PreparedStatement pst =null;
         String sql = null;
-        Product product = (Product)entity;
+        Device device = (Device)entity;
         
         
 
@@ -292,81 +292,76 @@ public class DeviceDAO extends AbstractJdbcDAO {
         {
             openConnection();
             
-            if( product.getName() != null &&!product.getName().equals(""))
+            if(device.getId() != null && device.getId() > 0)
             {
-                sql = "SELECT prd.id,"
-                + "prd.name,"
-                + "prd.description,"
-                + "prd.nutritionTable,"
-                + "prd.id_category,"
-                + "prd.dt_reg,"
-                + "prd.quantity,"
-                + "bra.id,"
-                + "bra.name, "
-                + "prd.price, "
-                + "cat.id,"
-                + "cat.name " 
-                + " FROM (tb_product as prd) "
-                + " INNER JOIN (tb_brand as bra) ON (prd.id_brand = bra.id) "
-                + "INNER JOIN (tb_category as cat) ON (prd.id_category = cat.id) "
-                + "WHERE prd.name=?";
+                sql = "SELECT dev.id,"
+                        + "dev.hostname,"
+                        + "dev.dt_reg,"
+                        + "dev.serial,"
+                        + "dev.ip_address,"
+                        + "dev.note, "
+                        + "own.name, "
+                        + "man.name, "
+                        + "st.name, "
+                        + "sup.name,"
+                        + "typ.name, "
+                        + "hos.name, "
+                        + "loc.name "
+                        + "FROM (tb_device as dev) "
+                        + "INNER JOIN (tb_owner as own) ON (dev.owner_id = own.id) "
+                        + "INNER JOIN (tb_manufactor as man) ON (dev.manufactor_id = man.id) "
+                        + "INNER JOIN (tb_status as st) ON (dev.status_id = st.id) "
+                        + "INNER JOIN (tb_supteam as sup) ON (dev.supteam_id = sup.id) "
+                        + "INNER JOIN (tb_type as typ) ON (dev.type_id = typ.id) "
+                        + "INNER JOIN (tb_hoststats as hos) ON (dev.hoststats_id = hos.id) "
+                        + "INNER JOIN (tb_location as loc) ON (dev.location_id = loc.id)"
+                        + "WHERE dev.id = ?";
                 
                 pst = connection.prepareStatement(sql);
-                pst.setString(1, product.getName());
-            }
-            if(product.getId() != null && product.getId() > 0)
-            {
-                sql = "SELECT prd.id,"
-                + "prd.name,"
-                + "prd.description,"
-                + "prd.nutritionTable,"
-                + "prd.id_category,"
-                + "prd.dt_reg,"
-                + "prd.quantity,"
-                + "bra.id,"
-                + "bra.name, "
-                + "prd.price, "
-                + "cat.id,"
-                + "cat.name " 
-                + " FROM (tb_product as prd) "
-                + " INNER JOIN (tb_brand as bra) ON (prd.id_brand = bra.id) "
-                + "INNER JOIN (tb_category as cat) ON (prd.id_category = cat.id) "
-                + "WHERE prd.id=?";
-                
-                pst = connection.prepareStatement(sql);
-                pst.setInt(1, product.getId());
+                pst.setInt(1, device.getId());
             }
             
             ResultSet reset = pst.executeQuery();
              while(reset.next())
             {
-                Product pd = new Product();
-                Brand bd = new Brand();
-                pd.setId(reset.getInt("prd.id"));
-                pd.setName(reset.getString("prd.name"));
-                pd.setDescription(reset.getString("prd.description"));;
-                pd.setNutritionTable(reset.getString("prd.nutritionTable"));
-                pd.setPrice(reset.getDouble("prd.price"));
-                pd.setQuantity(reset.getInt("prd.quantity"));
-                Category cat = new Category();
-                cat.setId(reset.getInt("cat.id"));
-                cat.setName(reset.getString("cat.name"));
-                pd.setCategory(cat);
-                java.sql.Date dtGenerica = reset.getDate("prd.dt_reg");
+                Device dev = new Device();
+                dev.setId(reset.getInt("dev.id"));
+                dev.setHostname(reset.getString("dev.hostname"));;
+                java.sql.Date dtGenerica = reset.getDate("dev.dt_reg");
                 Date dtNormal = new Date(dtGenerica.getTime());
-                pd.setDtCadastro(dtNormal);
-                bd.setId(reset.getInt("bra.id"));
-                bd.setName(reset.getString("bra.name"));
-                pd.setBrand(bd);
+                dev.setSerial(reset.getString("dev.serial"));
+                dev.setIpAddress(reset.getString("dev.ip_address"));
+                Owner owner = new Owner();
+                owner.setName(reset.getString("own.name"));
+                Manufactor manufactor = new Manufactor();
+                manufactor.setName(reset.getString("man.name"));
+                Status status = new Status();
+                status.setName(reset.getString("st.name"));
+                SupportTeam spteam = new SupportTeam();
+                spteam.setName(reset.getString("sup.name"));
+                Type type = new Type();
+                type.setName(reset.getString("typ.name"));
+                HostStatus hoststatus = new HostStatus();
+                hoststatus.setName(reset.getString("hos.name"));
+                Location location = new Location();
+                location.setName(reset.getString("loc.name"));
+                dev.setOwner(owner);
+                dev.setManufactor(manufactor);
+                dev.setStatus(status);
+                dev.setSupteam(spteam);
+                dev.setType(type);
+                dev.setHoststats(hoststatus);
+                dev.setLocation(location);
                 
-                return pd;
+                
+                return dev;
             }
         }
         catch(SQLException e)
         {
             e.printStackTrace();
         }
-*/
+
         return null;
         
         

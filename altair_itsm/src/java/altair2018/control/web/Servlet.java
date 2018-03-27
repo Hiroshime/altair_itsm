@@ -23,6 +23,7 @@ import altair2018.control.web.vh.IViewHelper;
 import altair2018.control.web.vh.impl.LoginViewHelper;
 import altair2018.control.web.vh.impl.CreateDeviceViewHelper;
 import altair2018.control.web.vh.impl.ListDeviceViewHelper;
+import altair2018.control.web.vh.impl.ViewDeviceViewHelper;
 import altair2018.core.application.Result;
 import altair2018.domain.DomainEntity;
 
@@ -76,6 +77,7 @@ public class Servlet extends HttpServlet {
         //Apenas uma view helper de aluno
         views.put("/sup-web/userPage/Product", new CreateDeviceViewHelper());
         views.put("/altair_itsm/altair_page_bootstrap/pages/BaselineGeral", new ListDeviceViewHelper());
+        views.put("/altair_itsm/altair_page_bootstrap/pages/VerDispositivo", new ViewDeviceViewHelper());
         
         
         views.put("/altair_itsm/altair_page_bootstrap/pages/Login", new LoginViewHelper());
