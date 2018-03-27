@@ -294,7 +294,7 @@
                                     <a href="BaselineGeral?operacao=CONSULTAR&cliente=CGI">CGI</a>
                                 </li>
                                 <li>
-                                    <a href="BaselineGeral?operacao=CONSULTAR&cliente=EDP">EDP</a>
+                                    <a href="BaselineGeral?operacao=CONSULTAR&cliente=EDP-SP">EDP</a>
                                 </li>
                                 <li>
                                     <a href="BaselineGeral?operacao=CONSULTAR&cliente=NEOENERGIA">NEOENERGIA</a>

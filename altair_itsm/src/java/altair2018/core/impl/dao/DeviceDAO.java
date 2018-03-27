@@ -18,6 +18,7 @@ import altair2018.domain.Category;
 import altair2018.domain.Device;
 import altair2018.domain.DomainEntity;
 import altair2018.domain.HostStatus;
+import altair2018.domain.Location;
 import altair2018.domain.Manufactor;
 import altair2018.domain.Owner;
 import altair2018.domain.Status;
@@ -187,14 +188,16 @@ public class DeviceDAO extends AbstractJdbcDAO {
                         + "st.name, "
                         + "sup.name,"
                         + "typ.name, "
-                        + "hos.name "
+                        + "hos.name, "
+                        + "loc.name "
                         + "FROM (tb_device as dev) "
                         + "INNER JOIN (tb_owner as own) ON (dev.owner_id = own.id) "
                         + "INNER JOIN (tb_manufactor as man) ON (dev.manufactor_id = man.id) "
                         + "INNER JOIN (tb_status as st) ON (dev.status_id = st.id) "
                         + "INNER JOIN (tb_supteam as sup) ON (dev.supteam_id = sup.id) "
                         + "INNER JOIN (tb_type as typ) ON (dev.type_id = typ.id) "
-                        + "INNER JOIN (tb_hoststats as hos) ON (dev.hoststats_id = hos.id)";
+                        + "INNER JOIN (tb_hoststats as hos) ON (dev.hoststats_id = hos.id)"
+                        + "INNER JOIN (tb_location as loc) ON (dev.location_id = loc.id)";
 
                 pst = connection.prepareStatement(sql);
             }
@@ -211,7 +214,8 @@ public class DeviceDAO extends AbstractJdbcDAO {
                         + "st.name, "
                         + "sup.name,"
                         + "typ.name, "
-                        + "hos.name "
+                        + "hos.name, "
+                        + "loc.name "
                         + "FROM (tb_device as dev) "
                         + "INNER JOIN (tb_owner as own) ON (dev.owner_id = own.id) "
                         + "INNER JOIN (tb_manufactor as man) ON (dev.manufactor_id = man.id) "
@@ -219,6 +223,7 @@ public class DeviceDAO extends AbstractJdbcDAO {
                         + "INNER JOIN (tb_supteam as sup) ON (dev.supteam_id = sup.id) "
                         + "INNER JOIN (tb_type as typ) ON (dev.type_id = typ.id) "
                         + "INNER JOIN (tb_hoststats as hos) ON (dev.hoststats_id = hos.id) "
+                        + "INNER JOIN (tb_location as loc) ON (dev.location_id = loc.id)"
                         + "WHERE own.name = ?";
                
                 pst = connection.prepareStatement(sql);
@@ -249,12 +254,15 @@ public class DeviceDAO extends AbstractJdbcDAO {
                 type.setName(reset.getString("typ.name"));
                 HostStatus hoststatus = new HostStatus();
                 hoststatus.setName(reset.getString("hos.name"));
+                Location location = new Location();
+                location.setName(reset.getString("loc.name"));
                 dev.setOwner(owner);
                 dev.setManufactor(manufactor);
                 dev.setStatus(status);
                 dev.setSupteam(spteam);
                 dev.setType(type);
                 dev.setHoststats(hoststatus);
+                dev.setLocation(location);
                 devices.add(dev);
                 
             }

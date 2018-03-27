@@ -307,7 +307,7 @@
                                     <a href="BaselineGeral?operacao=CONSULTAR&cliente=CGI">CGI</a>
                                 </li>
                                 <li>
-                                    <a href="BaselineGeral?operacao=CONSULTAR&cliente=EDP">EDP</a>
+                                    <a href="BaselineGeral?operacao=CONSULTAR&cliente=EDP-SP">EDP</a>
                                 </li>
                                 <li>
                                     <a href="BaselineGeral?operacao=CONSULTAR&cliente=NEOENERGIA">NEOENERGIA</a>
@@ -423,6 +423,7 @@
                                         <th>Fabricante</th>
                                         <th>Equipe Responsavel</th>
                                         <th>Dono</th>
+                                        <th>Localização</th>
                                         <th>Estado</th>
                                         <th>Host_State</th>
                                         
@@ -464,6 +465,9 @@
                                                     sbRegister.append("</td>");
                                                     sbRegister.append("<td>");
                                                     sbRegister.append(dev.getOwner().getName());
+                                                    sbRegister.append("</td>");
+                                                    sbRegister.append("<td>");
+                                                    sbRegister.append(dev.getLocation().getName());
                                                     sbRegister.append("</td>");
                                                     sbRegister.append("<td>");
                                                     sbRegister.append(dev.getStatus().getName());
