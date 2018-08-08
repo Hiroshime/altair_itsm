@@ -78,8 +78,6 @@ public class Servlet extends HttpServlet {
         views.put("/sup-web/userPage/Product", new CreateDeviceViewHelper());
         views.put("/altair_itsm/altair_page_bootstrap/pages/BaselineGeral", new ListDeviceViewHelper());
         views.put("/altair_itsm/altair_page_bootstrap/pages/VerDispositivo", new ViewDeviceViewHelper());
-        
-        
         views.put("/altair_itsm/altair_page_bootstrap/pages/Login", new LoginViewHelper());
     }
 
