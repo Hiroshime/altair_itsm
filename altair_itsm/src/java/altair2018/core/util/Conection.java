@@ -19,9 +19,9 @@ public class Conection {
     public static Connection getConnection() 
 			throws ClassNotFoundException, 
 		SQLException{
-		String driver = "com.mysql.jdbc.Driver";
+		String driver = "com.mysql.cj.jdbc.Driver";
                 Class.forName( driver );
-		String url = "jdbc:mysql://127.0.0.1/altair_suite"; 
+		String url = "jdbc:mysql://127.0.0.1/altair_suite?useTimezone=true&serverTimezone=UTC"; 
                 String user = "root";
 		String password = "root";
 		

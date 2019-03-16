@@ -92,7 +92,7 @@ public class UserDAO extends AbstractJdbcDAO {
                 + "name,"
                 + "email,"
                 + "password,"
-                + "date_reg"
+                + "dt_registro"
                 + " FROM tb_user "
                 + "WHERE username=? "
                 + "AND "
@@ -116,7 +116,7 @@ public class UserDAO extends AbstractJdbcDAO {
                 user.setUsername(reset.getString("username"));
                 user.setName(reset.getString("name"));
                 user.setEmail(reset.getString("email"));
-                java.sql.Date dtGenerica = reset.getDate("date_reg");
+                java.sql.Date dtGenerica = reset.getDate("dt_registro");
                 Date dtNormal = new Date(dtGenerica.getTime());
                 user.setDtCadastro(dtNormal);
                 return user;
